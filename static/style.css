@@ -1,0 +1,29 @@
+nav {
+  background-image: url(img/dartmouth_background.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-left: 20px;
+}
+
+.card {
+  width: 350px;
+  height: 350px;
+  margin: 20px;
+}
+
+.card-flex {
+  display: flex;
+  justify-content: space-around;
+  flex-flow: row wrap;
+}
+
+.card-image {
+  height: 60%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.card-action a {
+  cursor: pointer;
+}
