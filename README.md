@@ -2,7 +2,11 @@
 
 Today we’re going to create a Docker container for the app that we built in Short Assignment 7, and then we’re going to deploy this container on Digital Ocean.
 
-Install docker for mac os or windows:
+Be sure to look out for the following notations:
+* :computer: run in terminal
+* :rocket: this is a key step
+
+:rocket: Install docker for mac os or windows:
 [Mac OS](https://store.docker.com/editions/community/docker-ce-desktop-mac?tab=description)
 
 Windows users should download [Docker Toolbox] (https://www.docker.com/products/docker-toolbox)
@@ -12,14 +16,16 @@ You only need Docker Machine, no need to install any of the other options.
 
 ## Setup Accounts
 
-Create a [Digital Ocean](https://www.digitalocean.com/) account. It will ask for credit card information, but if your [Github Education Pack](https://education.github.com/pack) has a promo code that gives you a $50 credit which is much more than you need for this workshop.
+:rocket: Create a [Digital Ocean](https://www.digitalocean.com/) account. It will ask for credit card information, but if your [Github Education Pack](https://education.github.com/pack) has a promo code that gives you a $50 credit which is much more than you need for this workshop.
 
-After that, head on over to [Docker Hub](https://hub.docker.com/) and create a free account there as well.
+:rocket: After that, head on over to [Docker Hub](https://hub.docker.com/) and create a free account there as well.
 
-Now we will work on building a Docker container for the app we built in Short Assignment 7. This repo contains a working copy of it, with one change in server.js:
+Now we will work on building a Docker container for the app we built in Short Assignment 7. This repo contains a working copy of it. If you are using your own SA7 code, mak in server.js:
 
+```
 const mongoURI = 'mongodb://' + process.env.MONGODB_PORT_27017_TCP_ADDR + ':' +
                   process.env.MONGODB_PORT_27017_TCP_PORT + '/cs52poll';
+```
 
 We will have our app running in one Docker container, and Mongodb running in another and then link them together, and this is used so that our app is looking in the correct place for the database.
 
@@ -30,6 +36,8 @@ NOTE: In the following if you get the error “Cannot connect to the Docker daem
 Create an empty file Dockerfile at your top-level directory and open it in Atom.
 
 In the file you want the following:
+
+```
 FROM node:latest
 
 # Create app directory
@@ -46,7 +54,7 @@ COPY . /usr/src/app
 EXPOSE 9090
 
 CMD [ "npm", "run", "dev" ]
-
+```
 
 Now, create a .dockerignore file containing
 node_modules
@@ -54,13 +62,22 @@ npm-debug.log
 
 Build the image:
 Note: replace username with your docker username
-`$ docker build -t username/sa7-app .`
+
+```
+$ docker build -t username/sa7-app .
+```
+
 (don’t forget the period at the end of the command!)
 
 Be prepared for this to download lots of files as it builds your image for you.
 
 Run the image:
-`$ docker run -p 8080:9090 -d username/sa7-app`
+
+```
+$ docker run -p 8080:9090 -d username/sa7-app
+```
+
+
 But…. this doesn’t work because it is not connected to a database. (You may see a string of letters and numbers displayed on your terminal window. That’s normal! The string is actually the container ID of the container in which this image is running)
 
 The -p option takes port 9090 of the container and exposes it on port 8080 on your localhost.
@@ -68,18 +85,23 @@ The -d option runs it in detached mode so that it can continue even if you log o
 
 ### Docker Commands:
 View the running docker containers
+```
 $ docker ps
+```
 
-View current and past running docker containers
+View current and past running docker containers:
+
 ```
 $ docker ps -a
 ```
-Print app output
+Print app output:
+
 ```
 $ docker logs <container id>
 ```
 
 Note: you will see an error that ends with this:
+
 ```
 [nodemon] app crashed - waiting for file changes before starting…
 ```
@@ -172,8 +194,11 @@ Create a Dockfile and .dockerignore in your local project repository.
 Build the docker image for the project.
 Pull the mongodb docker image, run it and then link it to the project image.
 Test your project in localhost:8080.
-Push your docker image to Docker Hub.
+Push your project image to Docker Hub.
 Create a docker droplet in Digital Ocean.
+Ssh to your server and pull the mongodb image, your project image.
+Run the mongodb image first then link it with your project image.
+You’re down with deploying your . Check your
 
 
 
