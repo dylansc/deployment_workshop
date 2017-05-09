@@ -1,32 +1,39 @@
 # Deployment Workshop - Docker, Digital Ocean
 
-# Introduction
 
-Docker is a software container platform that helps automate the repetitive tasks of setting up and configuring development environments so that developers can focus on what matters: building great software.
+## Introduction
 
-Digital Ocean is a cloud infrastructure provider that allows developers to deploy and host their programs on virtual private servers called Droplets.
+Docker is a software container platform that helps automate the repetitive tasks of setting up and configuring development environments so that developers can focus on what matters: building great software. It can bundle dependencies and your application into a single Docker container that is independent from the host version of Linux kernel, platform distribution, or deployment model. This container can be transferred to another machine that runs Docker, and executed there without compatibility issues.
 
-# Goals for the workshop
+Digital Ocean is a cloud infrastructure provider that allows developers to deploy and host their programs on virtual private servers called Droplets. 
+
+## Goals for the workshop
 Today we’re going to create a Docker container for the app that we built in Short Assignment 7, and then we’re going to deploy this container on Digital Ocean.
+
+In the first part, you will get familiar with creating and testing a Docker container for your project. In the second part, you will learn how to deploy your container on Digital Ocean. 
 
 Be sure to look out for the following notations:
 * :computer: run in terminal
 * :rocket: this is a key step
 * :warning: Follow instructions carefully!!!
 
-# Step Overview
-Create a Dockerfile and .dockerignore in the local repository of your Short Assignment 7.
-Build the docker image for your project.
-Pull the mongodb docker image, run it and then link it to your project image.
-Test your project in localhost:8080.
-Push your project image to Docker Hub.
-Create a docker droplet in Digital Ocean.
-Ssh to your server and pull the mongodb image, your project image.
-Run the mongodb image first then link it with your project image.
-Copy and paste the ip address of your server into your browser and Have a look!
-You’re done with deploying your project image in Digital Ocean!
+## Step Overview
+Create a Docker container for your project and test:
+ 1. Create a Dockerfile and .dockerignore in the local repository of your Short Assignment 7.
+ 2. Build a docker container for your Short Assignment 7.
+ 3. Pull the mongodb docker container, run it and then link it to your project container.
+ 4. Make sure your project work in localhost:8080.
+ 
+Deploy your project container on Digital Ocean:
+ 1. Push your project container to Docker Hub.
+ 2. Create a docker droplet in Digital Ocean.
+ 3. SSH to your server and pull the mongodb container and your project container.
+ 4. Run the mongodb container first then link it to your project container.
+ 5. Copy and paste the ip address of your server into your browser and have a look! You made it!
 
-:rocket: Install docker for mac os or windows:
+
+
+## Install docker for mac os or windows:
 
 [Mac OS](https://store.docker.com/editions/community/docker-ce-desktop-mac?tab=description)
 
@@ -91,7 +98,7 @@ Note: replace username with your docker username
 $ docker build -t username/sa7-app .
 ```
 
-(Don’t forget the period at the end of the command!)
+:warning: Don’t forget the period at the end of the command!
 
 Be prepared for this to download lots of files as it builds your image for you.
 
@@ -252,16 +259,15 @@ This time we are exposing the container on port 80, so if you go to the server i
 
 # Checklist
 
-:white_check_mark: Installed Docker and build a docker image for your sa7.
+:white_check_mark: Installed Docker and build a Docker container for your sa7.
 
-:white_check_mark: Tested your project image with the mongodb image locally.
+:white_check_mark: Tested your project container with the mongodb container locally.
 
-:white_check_mark: Pushed your project image to Docker Hub.
+:white_check_mark: Pushed your project container to Docker Hub.
 
-:white_check_mark: Set up your docker droplet in Digital Ocean.
+:white_check_mark: Set up your Docker Droplet on Digital Ocean.
 
-:white_check_mark: Pulled your project image and mongo db image in your server and linked them. Then you made it happen!
-
+:white_check_mark: Pulled your project container and mongo db container in your server and linked them. Then you made it happen! 
 
 
 
