@@ -9,8 +9,9 @@ Be sure to look out for the following notations:
 :rocket: Install docker for mac os or windows:
 [Mac OS](https://store.docker.com/editions/community/docker-ce-desktop-mac?tab=description)
 
-Windows users should download [Docker Toolbox] (https://www.docker.com/products/docker-toolbox)
-You only need Docker Machine, no need to install any of the other options.
+Windows users should download [Docker Toolbox](https://www.docker.com/products/docker-toolbox)
+
+(You only need Docker Machine, no need to install any of the other options.)
 
 [Ubuntu](https://store.docker.com/editions/community/docker-ce-server-ubuntu?tab=description)
 
@@ -20,7 +21,7 @@ You only need Docker Machine, no need to install any of the other options.
 
 :rocket: After that, head on over to [Docker Hub](https://hub.docker.com/) and create a free account there as well.
 
-Now we will work on building a Docker container for the app we built in Short Assignment 7. This repo contains a working copy of it. If you are using your own SA7 code, mak in server.js:
+Now we will work on building a Docker container for the app we built in Short Assignment 7. This repo contains a working copy of it. :rocket: If you are using your own SA7 code, make the following change in server.js:
 
 ```
 const mongoURI = 'mongodb://' + process.env.MONGODB_PORT_27017_TCP_ADDR + ':' +
@@ -33,7 +34,7 @@ NOTE: In the following if you get the error “Cannot connect to the Docker daem
 
 ## Building the Docker Image
 
-Create an empty file Dockerfile at your top-level directory and open it in Atom.
+:rocket: Create an empty file Dockerfile at your top-level directory and open it in Atom.
 
 In the file you want the following:
 
@@ -56,22 +57,25 @@ EXPOSE 9090
 CMD [ "npm", "run", "dev" ]
 ```
 
-Now, create a .dockerignore file containing
+:rocket: Now, create a .dockerignore file containing
+
+```
 node_modules
 npm-debug.log
+```
 
-Build the image:
+:computer:  Build the image:
 Note: replace username with your docker username
 
 ```
 $ docker build -t username/sa7-app .
 ```
 
-(don’t forget the period at the end of the command!)
+(Don’t forget the period at the end of the command!)
 
 Be prepared for this to download lots of files as it builds your image for you.
 
-Run the image:
+:computer: Run the image:
 
 ```
 $ docker run -p 8080:9090 -d username/sa7-app
@@ -107,16 +111,20 @@ Note: you will see an error that ends with this:
 ```
 
 Now halt your app container for now, we’ll start it back up in a few minutes
+
 ```
 $ docker stop <container id>
 ```
 
 Side Note:
 You can connect to a running Docker container and run commands within it
+
 ```
 $ docker exec -it <container id> bash
 ```
-or
+
+Or
+
 ```
 $ docker exec -it <container name> bash
 ```
@@ -126,14 +134,19 @@ $ docker exec -it <container name> bash
 ## Getting Mongo running in a Docker container:
 
 Pull it from Docker Hub:
-`$ docker pull mongo:latest`
+
+```
+$ docker pull mongo:latest
+```
 
 Make a data directory in this folder:
+
 ```
 $ mkdir $(pwd)/data
 ```
 
 Run the mongo container:
+
 ```
 $ docker run -v $(pwd)/data --name mongo -d mongo mongod --smallfiles
 ```
@@ -142,6 +155,7 @@ $ docker run -v $(pwd)/data --name mongo -d mongo mongod --smallfiles
 Now that you have a container with mongo up and running, you can link it to your app.
 
 Run your application connected to Mongo:
+
 ```
 $ docker run -p 8080:9090 --link mongo:mongodb -d username/sa7-app
 ```
@@ -151,6 +165,7 @@ You should now be able to go to http://localhost:8080/ and view the app. But wai
 In [Docker Hub](https://hub.docker.com/), create a new repository with the same name as your app and give it whatever description you like. Then in Terminal, run `$ docker login` and use your Docker Hub credentials.
 
 After you are logged in, push it to Docker Hub with a simple
+
 ```
 $ docker push username/sa7-app
 ```
@@ -169,9 +184,11 @@ Click the “Create Droplet” button. Then click the tab for “One-click apps�
 Below, choose the $5/mo option, and it is fine to leave the rest at the defaults. Click create and it will bring you back to the Droplets screen and after a few moments the newly created droplet will appear.
 
 You will receive an email with the IP and the root password, which you will use to
+
 ```
 $ ssh root@<server ip>
 ```
+
 (Wait until your droplet finishes setting up and run the above ssh to login to your droplet. You can find the server ip your droplet dashboard )
 
 Upon login you will be prompted to enter the root password which you received in the email. You will then be prompted to change the root password.
@@ -179,6 +196,7 @@ Upon login you will be prompted to enter the root password which you received in
 Now, if your Docker container has successfully been pushed to Docker Hub, then it is time to set it up here.
 
 Run the following commands while logged into Digital Ocean:
+
 ```
 $ docker pull mongo:latest
 $ docker pull username/sa7-app
@@ -198,7 +216,7 @@ Push your project image to Docker Hub.
 Create a docker droplet in Digital Ocean.
 Ssh to your server and pull the mongodb image, your project image.
 Run the mongodb image first then link it with your project image.
-You’re down with deploying your . Check your
+You’re done with deploying your project image in Digital Ocean! Have a look!  Copy and paste the ip address of your server into your browser.
 
 
 
