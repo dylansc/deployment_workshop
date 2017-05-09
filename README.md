@@ -28,7 +28,7 @@ Be sure to look out for the following notations:
  10. You’re done with deploying your project in a Docker container in Digital Ocean!
 
 
-:rocket: Install docker for mac os or windows:
+## Install docker for mac os or windows:
 
 [Mac OS](https://store.docker.com/editions/community/docker-ce-desktop-mac?tab=description)
 
@@ -93,7 +93,7 @@ Note: replace username with your docker username
 $ docker build -t username/sa7-app .
 ```
 
-(Don’t forget the period at the end of the command!)
+:warning: Don’t forget the period at the end of the command!
 
 Be prepared for this to download lots of files as it builds your image for you.
 
