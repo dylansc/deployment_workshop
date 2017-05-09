@@ -1,4 +1,4 @@
-# Short Assignment 7
+# Deployment Workshop
 
 Today we’re going to create a Docker container for the app that we built in Short Assignment 7, and then we’re going to deploy this container on Digital Ocean.
 
