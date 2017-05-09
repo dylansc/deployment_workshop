@@ -1,4 +1,6 @@
-# Deployment Workshop
+# Deployment Workshop - Docker, Digital Ocean
+
+Docker is a software container platform
 
 Today we’re going to create a Docker container for the app that we built in Short Assignment 7, and then we’re going to deploy this container on Digital Ocean.
 
@@ -156,7 +158,7 @@ $ docker run -v $(pwd)/data --name mongo -d mongo mongod --smallfiles
 
 Now that you have a container with Mongo up and running, you can link it to your app.
 
-:computer: Run your application connected to Mongo:
+:computer: Run your application connected to Mongo (Make sure to stop any previous instances):
 
 ```
 $ docker run -p 8080:9090 --link mongo:mongodb -d username/sa7-app
@@ -185,8 +187,13 @@ While that is uploading, let’s set up a droplet on [Digital Ocean](https://www
 
 After logging in, there should be an option to Create a Droplet. Click that, and we’ll go through the process of setting up a simple Droplet with Docker set up.
 
-:rocket: Click the “Create Droplet” button. Then click the tab for “One-click apps” (right below “Choose an image”) and choose Docker 17.04.0-ce on 16.04.
+:rocket: Click the “Create Droplet” button. Then click the tab for “One-click apps” (right below “Choose an image”)
 
+![](https://github.com/dylansc/deployment_workshop/blob/master/img/digitalocean1.png)
+
+and choose Docker 17.04.0-ce on 16.04.
+
+![](https://github.com/dylansc/deployment_workshop/blob/master/img/digitalocean2.png)
 
 :rocket: Scroll down and choose the $5/mo option, and it is fine to leave the rest at the defaults. Click create and it will bring you back to the Droplets screen and after a few moments the newly created droplet will appear.
 
@@ -200,14 +207,14 @@ $ ssh root@<server ip>
 
 :computer: Upon login you will be prompted to enter the root password which you received in the email.
 
-:computer: When you see
+You will see
 
 ```
 Changing password for root.
 (current) UNIX password:
 ```
 
-enter that password again and then set up a new password.
+:computer: Just enter that password again and then set up a new password.
 
 Now, if your Docker container has successfully been pushed to Docker Hub, then it is time to set it up here.
 
@@ -225,7 +232,7 @@ Celebrate!!!
 This time we are exposing the container on port 80, so if you go to the server ip in your browser then you should be greeted with your app!
 
 Procedure Overview
-Create a Dockfile and .dockerignore in your local project repository.
+Create a Dockerfile and .dockerignore in your local project repository.
 Build the docker image for the project.
 Pull the mongodb docker image, run it and then link it to the project image.
 Test your project in localhost:8080.
@@ -237,6 +244,11 @@ Copy and paste the ip address of your server into your browser and Have a look!
 You’re done with deploying your project image in Digital Ocean!
 
 Checklist
+:white_check_mark: Installed Docker and build a docker image for your sa7.
+:white_check_mark: Tested your project image with the mongodb image locally.
+:white_check_mark: Pushed your project image to Docker Hub.
+:white_check_mark: Set up your docker droplet in Digital Ocean.
+:white_check_mark: Pulled your project image and mongo db image in your server and linked them. Then you made it happen!
 
 
 There’s more
