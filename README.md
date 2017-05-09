@@ -1,12 +1,30 @@
 # Deployment Workshop - Docker, Digital Ocean
 
-Docker is a software container platform
+# Introduction
 
+Docker is a software container platform that helps automate the repetitive tasks of setting up and configuring development environments so that developers can focus on what matters: building great software.
+
+Digital Ocean is a cloud infrastructure provider that allows developers to deploy and host their programs on virtual private servers called Droplets.
+
+# Goals for the workshop
 Today we’re going to create a Docker container for the app that we built in Short Assignment 7, and then we’re going to deploy this container on Digital Ocean.
 
 Be sure to look out for the following notations:
 * :computer: run in terminal
 * :rocket: this is a key step
+* :warning: Follow instructions carefully!!!
+
+# Step Overview
+Create a Dockerfile and .dockerignore in the local repository of your Short Assignment 7.
+Build the docker image for your project.
+Pull the mongodb docker image, run it and then link it to your project image.
+Test your project in localhost:8080.
+Push your project image to Docker Hub.
+Create a docker droplet in Digital Ocean.
+Ssh to your server and pull the mongodb image, your project image.
+Run the mongodb image first then link it with your project image.
+Copy and paste the ip address of your server into your browser and Have a look!
+You’re done with deploying your project image in Digital Ocean!
 
 :rocket: Install docker for mac os or windows:
 
@@ -231,29 +249,27 @@ $ docker run -p 80:9090 --link mongo:mongodb -d username/sa7-app
 Celebrate!!!
 This time we are exposing the container on port 80, so if you go to the server ip in your browser then you should be greeted with your app!
 
-Procedure Overview
-Create a Dockerfile and .dockerignore in your local project repository.
-Build the docker image for the project.
-Pull the mongodb docker image, run it and then link it to the project image.
-Test your project in localhost:8080.
-Push your project image to Docker Hub.
-Create a docker droplet in Digital Ocean.
-Ssh to your server and pull the mongodb image, your project image.
-Run the mongodb image first then link it with your project image.
-Copy and paste the ip address of your server into your browser and Have a look!
-You’re done with deploying your project image in Digital Ocean!
 
-Checklist
+# Checklist
+
 :white_check_mark: Installed Docker and build a docker image for your sa7.
+
 :white_check_mark: Tested your project image with the mongodb image locally.
+
 :white_check_mark: Pushed your project image to Docker Hub.
+
 :white_check_mark: Set up your docker droplet in Digital Ocean.
+
 :white_check_mark: Pulled your project image and mongo db image in your server and linked them. Then you made it happen!
 
 
-There’s more
+
+
 
 References:
+
 https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
+
 http://www.ifdattic.com/how-to-mongodb-nodejs-docker/
+
 https://www.thachmai.info/2015/05/10/docker-container-linking-mongo-node/
