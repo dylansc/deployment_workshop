@@ -5,12 +5,12 @@
 
 Docker is a software container platform that helps automate the repetitive tasks of setting up and configuring development environments so that developers can focus on what matters: building great software. It can bundle dependencies and your application into a single Docker container that is independent from the host version of Linux kernel, platform distribution, or deployment model. This container can be transferred to another machine that runs Docker, and executed there without compatibility issues.
 
-Digital Ocean is a cloud infrastructure provider that allows developers to deploy and host their programs on virtual private servers called Droplets. 
+Digital Ocean is a cloud infrastructure provider that allows developers to deploy and host their programs on virtual private servers called Droplets.
 
 ## Goals for the workshop
 Today we’re going to create a Docker container for the app that we built in Short Assignment 7, and then we’re going to deploy this container on Digital Ocean.
 
-In the first part, you will get familiar with creating and testing a Docker container for your project. In the second part, you will learn how to deploy your container on Digital Ocean. 
+In the first part, you will get familiar with creating and testing a Docker container for your project. In the second part, you will learn how to deploy your container on Digital Ocean.
 
 Be sure to look out for the following notations:
 * :computer: run in terminal
@@ -23,7 +23,7 @@ Create a Docker container for your project and test:
  2. Build a docker container for your Short Assignment 7.
  3. Pull the mongodb docker container, run it and then link it to your project container.
  4. Make sure your project work in localhost:8080.
- 
+
 Deploy your project container on Digital Ocean:
  1. Push your project container to Docker Hub.
  2. Create a docker droplet in Digital Ocean.
@@ -48,7 +48,9 @@ Windows users should download [Docker Toolbox](https://www.docker.com/products/d
 
 :rocket: After that, head on over to [Docker Hub](https://hub.docker.com/) and create a free account there as well.
 
-Now we will work on building a Docker container for the app we built in Short Assignment 7. This repo contains a working copy of it. :rocket: If you are using your own SA7 code, make the following change in server.js:
+Now we will work on building a Docker container for the app we built in Short Assignment 7.
+
+:rocket: Before continuing, make the following change in server.js:
 
 ```
 const mongoURI = 'mongodb://' + process.env.MONGODB_PORT_27017_TCP_ADDR + ':' +
@@ -267,7 +269,7 @@ This time we are exposing the container on port 80, so if you go to the server i
 
 :white_check_mark: Set up your Docker Droplet on Digital Ocean.
 
-:white_check_mark: Pulled your project container and mongo db container in your server and linked them. Then you made it happen! 
+:white_check_mark: Pulled your project container and mongo db container in your server and linked them. Then you made it happen!
 
 
 
