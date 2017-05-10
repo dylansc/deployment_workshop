@@ -46,6 +46,8 @@ Windows users should download [Docker Toolbox](https://www.docker.com/products/d
 
 :rocket: Create a [Digital Ocean](https://www.digitalocean.com/) account. It will ask for credit card information, but your [Github Education Pack](https://education.github.com/pack) has a promo code that gives you a $50 credit which is much more than you need for this workshop.
 
+**Make sure not to miss the promo code option below the credit card form**
+
 :rocket: After that, head on over to [Docker Hub](https://hub.docker.com/) and create a free account there as well.
 
 Now we will work on building a Docker container for the app we built in Short Assignment 7.
