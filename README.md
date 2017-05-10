@@ -33,7 +33,7 @@ Deploy your project container on Digital Ocean:
 
 
 
-## Install docker for mac os or windows:
+## Install Docker:
 
 [Mac OS](https://store.docker.com/editions/community/docker-ce-desktop-mac?tab=description)
 
@@ -44,7 +44,7 @@ Windows users should download [Docker Toolbox](https://www.docker.com/products/d
 
 ## Setup Accounts
 
-:rocket: Create a [Digital Ocean](https://www.digitalocean.com/) account. It will ask for credit card information, but if your [Github Education Pack](https://education.github.com/pack) has a promo code that gives you a $50 credit which is much more than you need for this workshop.
+:rocket: Create a [Digital Ocean](https://www.digitalocean.com/) account. It will ask for credit card information, but your [Github Education Pack](https://education.github.com/pack) has a promo code that gives you a $50 credit which is much more than you need for this workshop.
 
 :rocket: After that, head on over to [Docker Hub](https://hub.docker.com/) and create a free account there as well.
 
