@@ -3,9 +3,15 @@
 
 ## Introduction
 
-Docker is a software container platform that helps automate the repetitive tasks of setting up and configuring development environments so that developers can focus on what matters: building great software. It can bundle dependencies and your application into a single Docker container that is independent from the host version of Linux kernel, platform distribution, or deployment model. This container can be transferred to another machine that runs Docker, and executed there without compatibility issues.
+**Docker** is a software container platform that helps automate the repetitive tasks of setting up and configuring development environments so that developers can focus on what matters: building great software.
 
-Digital Ocean is a cloud infrastructure provider that allows developers to deploy and host their programs on virtual private servers called Droplets.
+Docker can build an `image` for your application, and bundle dependencies and your application into a standardized unit, called `container` that is independent from the host version of Linux kernel, platform distribution, or deployment model. This container can be transferred to another machine that runs Docker, and executed there without compatibility issues.
+
+
+In short, a `container` is a stripped-to-basics version of a Linux operating system.  An `image` is software you load into a container.
+
+
+**Digital Ocean** is a cloud infrastructure provider that allows developers to deploy and host their programs on virtual private servers called Droplets.
 
 ## Goals for the workshop
 Today we’re going to create a Docker container for the app that we built in Short Assignment 7, and then we’re going to deploy this container on Digital Ocean.
@@ -60,11 +66,11 @@ const mongoURI = `mongodb://${process.env.MONGODB_PORT_27017_TCP_ADDR}:${process
 
 We will have our app running in one Docker container, and Mongodb running in another and then link them together, and this is used so that our app is looking in the correct place for the database.
 
-NOTE: In the following if you get the error “Cannot connect to the Docker daemon”, then prefix any docker commands with sudo.
+:warning: In the following if you get the error “Cannot connect to the Docker daemon”, then prefix any docker commands with `sudo`.
 
 ## Building the Docker Image
 
-:rocket: Create an empty file Dockerfile at the top level of your app directory and open it in Atom.
+:rocket: Create an empty file `Dockerfile` at the top level of your app directory and open it in Atom.
 
 In the file you want the following:
 
@@ -87,7 +93,8 @@ EXPOSE 9090
 CMD [ "npm", "run", "dev" ]
 ```
 
-:rocket: Now, create a .dockerignore file containing
+:rocket: Now, create a `.dockerignore` file in the same directory as your `Dockerfile` with following content:
+
 
 ```
 node_modules
@@ -95,17 +102,17 @@ npm-debug.log
 ```
 
 :computer:  Build the image:
-Note: replace username with your docker username
 
 ```
 $ docker build -t username/sa7-app .
 ```
+:warning: Replace username with your docker username which you have created in Docker Hub
 
 :warning: Don’t forget the period at the end of the command!
 
 Be prepared for this to download lots of files as it builds your image for you.
 
-:computer: Run the image:
+:computer: Run the container:
 
 ```
 $ docker run -p 8080:9090 -d username/sa7-app
@@ -114,7 +121,7 @@ $ docker run -p 8080:9090 -d username/sa7-app
 
 But…. this **doesn’t work** because it is not connected to a database. (You may see a string of letters and numbers displayed on your terminal window. That’s normal! The string is actually the container ID of the container in which this image is running)
 
-The -p option takes port 9090 of the container and exposes it on port 8080 on your localhost.
+The -p option takes port 9090 of the container and exposes it on port 8080 on your localhost. Note that the port 9090 of our image is exposed to the container as we wrote in our DockerFile.
 The -d option runs it in detached mode so that it can continue even if you log out.
 
 ### Docker Commands:
@@ -128,7 +135,7 @@ View current and past running docker containers:
 ```
 $ docker ps -a
 ```
-Print app output:
+Copy the container id from the above output. Print the console log of your app within the container:
 
 ```
 $ docker logs <container id>
@@ -140,7 +147,7 @@ Note: you will see an error that ends with this:
 [nodemon] app crashed - waiting for file changes before starting…
 ```
 
-:computer: Now halt your app container for now, we’ll start it back up in a few minutes
+:computer: Now halt your app container for now, we’ll start it back up in a few minutes after we set up and run our database container
 
 ```
 $ docker stop <container id>
@@ -184,17 +191,20 @@ $ docker run -v $(pwd)/data --name mongo -d mongo mongod --smallfiles
 ```
 
 
-Now that you have a container with Mongo up and running, you can link it to your app.
+Now that you have a container with Mongo up and running. You can see that by running `docker ps`
+Now you can link it to your app.
 
-:computer: Run your application connected to Mongo (Make sure to stop any previous instances):
+:warning: Make sure you have run `docker stop` to halt your app container in the previous step:
 
+:computer: Bring your application alive and connect it to Mongo
 ```
 $ docker run -p 8080:9090 --link mongo:mongodb -d username/sa7-app
 ```
+Check your current processes using `docker ps`, and you can see both your app container and database container are up and running.
 
-You should now be able to go to http://localhost:8080/ and view the app. But wait, isn’t this what we already had? Yes, so now it is time to upload our newly built Docker container to Docker Hub so that we can deploy it anywhere.
+You should now be able to go to http://localhost:8080/ and view the app. But wait, isn’t this what we already had? Yes, so now it is time to upload our newly built Docker container to **Docker Hub** so that we can deploy it anywhere.
 
-:rocket: In [Docker Hub](https://hub.docker.com/), create a new repository with the same name as your app and give it whatever description you like. :computer: Then in Terminal, run
+:rocket: In [Docker Hub](https://hub.docker.com/), click **Create Repository** button on your right, create a new repository with the same name as your app(sa7-app) and give it whatever description you like. :computer: Then in Terminal, run
 ```
 $ docker login
 ```
