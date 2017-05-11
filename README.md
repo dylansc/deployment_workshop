@@ -53,8 +53,7 @@ Now we will work on building a Docker container for the app we built in Short As
 :rocket: Before continuing, make the following change in server.js:
 
 ```
-const mongoURI = 'mongodb://' + process.env.MONGODB_PORT_27017_TCP_ADDR + ':' +
-                  process.env.MONGODB_PORT_27017_TCP_PORT + '/cs52poll';
+const mongoURI = `mongodb://${process.env.MONGODB_PORT_27017_TCP_ADDR}:${process.env.MONGODB_PORT_27017_TCP_PORT}/cs52poll`;
 ```
 
 We will have our app running in one Docker container, and Mongodb running in another and then link them together, and this is used so that our app is looking in the correct place for the database.
